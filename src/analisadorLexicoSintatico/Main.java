@@ -16,7 +16,7 @@ public class Main {
 
 		try {
 		Symbol symbol = parser.parse();
-		System.out.println("\n Resultado MiniC: " + symbol);
+		System.out.println("\n Quantidade de Erros: " + symbol);
 		} catch(Exception e) {
 			
 			System.out.println();

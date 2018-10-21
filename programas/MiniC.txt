@@ -5,27 +5,31 @@
 
 /*
 
-	 *** Autor: Hilario Tomaz
-	 -- Data: 03/09/2018
-	   
+  *** Autor: Hilario Tomaz
+  -- Data: 23/03/2018
+   
 */
 
-int ma2in()
-{
-		
-	printint(fatorial(5));
-	
-	return 1;
+int main() {
+ 
+  printint(fatorial(5));
+  
+
+return 1;
+  
 }
 
-int fatorial(int n)
-{
-	int res;
+int fatorial (int n){
 
-	if (n < 1)
-		res = 1;
-	else
-		res = n * fatorial(n - 1);
+int res;
+char n = 'i';
+char i = '\n';
 
-	return res;
+if (n < 1)
+   res = 1;
+else
+   res = n * fatorial (n - 1);
+
+
+return res;
 }
