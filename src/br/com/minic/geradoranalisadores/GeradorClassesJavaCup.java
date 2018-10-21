@@ -1,4 +1,4 @@
-package analisadorLexicoSintatico;
+package br.com.minic.geradoranalisadores;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ public class GeradorClassesJavaCup {
 
   public static void main(String[] args) throws internal_error, IOException, Exception {
 
-    String[] argumentos = new String[] { "especificacoes/ExtratorMiniC.cup" };
+    String[] argumentos = new String[] { "especificacoes/MiniC.cup" };
     
     java_cup.Main.main( argumentos );
     

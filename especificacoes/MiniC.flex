@@ -1,22 +1,22 @@
-package analisadorLexicoSintatico;
+package br.com.minic.analisadorlexico;
+import br.com.minic.analisadorsintatico.sym;
 
 import java_cup.runtime.*;
 
 %%
 
-%class ClasseJFlex
+%class AnalisadorLexico
 %unicode
 %cup
 %line
 %column
 %type Symbol
+%public
 
 LETRA = [a-zA-Z]
 DIGITO = [0-9]
-ESCAPE = [\r \t \n \\]
 FINAL_LINHA = (\r | \n | \r\n | \t)
 ESPACO_EM_BRANCO = [ ]
-VAZIO = []
 
 ID = ( {LETRA} | _ )( {LETRA} | {DIGITO} | _ )*
 
@@ -27,12 +27,6 @@ LITERAL_PONTO_FLUTUANTE = {DIGITO}+("."{DIGITO}+)*
 
 COMENTARIO_LINHA = "//" [^\r\n]* {FINAL_LINHA}?
 COMENTARIO_MULTI_LINHAS = "/*"~"*/"
-
-OPERADORES_ARITMETICOS = ( "+" | "-" | "*" | "/" )
-OPERADORES_RELACIONAIS = ( "==" | "!=" | "<" | ">" | "<=" | ">=" )
-OPERADORES_LOGICOS = ( "&&" | "||" | "!" )
-OPERADOR_ATRIBUICAO = "="
-SIMBOLOS_PONTUACAO = ( ":" | ";" | "," | "(" | ")" | "{" | "}" | "." | "#" | "&" | "|" )
 
 %%
 
@@ -78,16 +72,16 @@ SIMBOLOS_PONTUACAO = ( ":" | ";" | "," | "(" | ")" | "{" | "}" | "." | "#" | "&"
 "*" { return new Symbol( sym.VEZES, yyline, yycolumn, yytext() ); }
 "/" { return new Symbol( sym.DIVIDE, yyline, yycolumn, yytext() ); }
 
-{COMENTARIO_MULTI_LINHAS} {}
-{COMENTARIO_LINHA} {}
 
 {LITERAL_CHAR} { return new Symbol( sym.LITERAL_CHAR, yyline, yycolumn, yytext() ); }
 {LITERAL_STRING} { return new Symbol( sym.LITERAL_STRING, yyline, yycolumn, yytext() ); }
 {LITERAL_INTEIRO} { return new Symbol( sym.LITERAL_INTEIRO,  yyline, yycolumn, yytext() ); }
 {LITERAL_PONTO_FLUTUANTE} { return new Symbol( sym.LITERAL_PONTO_FLUTUANTE,  yyline, yycolumn, yytext() ); }
 
+{COMENTARIO_MULTI_LINHAS} {}
+{COMENTARIO_LINHA} {}
+
 {FINAL_LINHA} {}
 {ESPACO_EM_BRANCO} {}
-{VAZIO} {}
 
 . { throw new Error( "\n Caracter Ilegal: < " + yytext() + ", " + yyline + ", " + yycolumn + " >"); }

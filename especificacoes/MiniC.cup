@@ -1,5 +1,5 @@
 
-package analisadorLexicoSintatico;
+package br.com.minic.analisadorsintatico;
 
 /* Simbolos Terminais */
 
